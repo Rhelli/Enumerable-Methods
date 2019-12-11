@@ -37,6 +37,3 @@ module Enumerable
   end
 end
 
-%w[ant, bear, panda].my_all? { |words| words.length > 1}
-
-[1, 2, 2, 5, 6, 245, 5, "a"].my_all? { |d| d.is_a? Integer}
