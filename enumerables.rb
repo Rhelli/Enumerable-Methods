@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Enumerable
   def my_each
     x = 0
@@ -7,8 +9,19 @@ module Enumerable
     end
     self
   end
+
+  def my_each_with_index
+    x = 0
+    while x < length
+      yield(self[x], x)
+      x += 1
+    end
+    self
+  end
 end
 
 
-array = Array.new(20) {rand(1...50)}
-array.my_each {|x| print "#{x}! "}
+letters = %w[a b c d e f g h i j]
+num = Array.new(10) {rand(1...10)}
+letters.my_each_with_index {|x, y| print "[#{x}, #{y}] "}
+num.my_each_with_index {|x, y| print "[#{x}, #{y}] "}
