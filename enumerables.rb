@@ -11,17 +11,19 @@ module Enumerable
   end
 
   def my_each_with_index
-    x = 0
-    while x < length
-      yield(self[x], x)
-      x += 1
+    y = 0
+    while y < length
+      yield(self[y], y)
+      y += 1
     end
     self
   end
+
+  def my_select
+    temp = []
+    my_each do |j|
+      yield(j) ? temp.push(j) : next
+    end
+    temp
+  end
 end
-
-
-letters = %w[a b c d e f g h i j]
-num = Array.new(10) {rand(1...10)}
-letters.my_each_with_index {|x, y| print "[#{x}, #{y}] "}
-num.my_each_with_index {|x, y| print "[#{x}, #{y}] "}
