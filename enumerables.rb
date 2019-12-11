@@ -36,3 +36,12 @@ module Enumerable
     end
     print valid
   end
+
+  def my_any?
+    bool = false
+    my_each do |any|
+      yield(any) ? bool = true : break
+    end
+    print bool
+  end
+end
