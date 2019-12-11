@@ -27,7 +27,3 @@ module Enumerable
     temp
   end
 end
-
-letters = %w[a b c d e f g h i j]
-num = Array.new(50) {rand(1...50)}
-num.my_select { |j| print "#{j} " if j.even?}
