@@ -20,14 +20,14 @@ module Enumerable
   end
 
   def my_select
-    temp = Array.new
-    self.my_each do |j|
-      temp.push(j) ? yield(j) : false
-      end
+    temp = []
+    my_each do |j|
+      yield(j) ? temp.push(j) : next
+    end
     temp
   end
 end
 
 letters = %w[a b c d e f g h i j]
-num = Array.new(10) {rand(1...10)}
-num.my_select {|j| print if j % 2 == 0}
+num = Array.new(50) {rand(1...50)}
+num.my_select { |j| print "#{j} " if j.even?}
