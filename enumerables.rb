@@ -87,4 +87,17 @@ module Enumerable
     end
     map_arr
   end
+
+  def my_inject(*injector)
+    return to_enum unless block_given?
+
+    inj_arr = injector + self
+    return inj_arr if inj_arr.empty? || length == 1
+
+    result = inj_arr[0]
+    inj_arr[1..-1].my_each { |i| result = yield(result, i) }
+    print result
+  end
 end
+
+print [5, 6, 7, 8, 9, 10].my_inject { |product, n| product + n }
