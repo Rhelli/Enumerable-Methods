@@ -12,7 +12,7 @@ module Enumerable
 
   def my_each_with_index
     y = 0
-    while y < length
+    while y < self.length
       yield(self[y], y)
       y += 1
     end
@@ -43,5 +43,16 @@ module Enumerable
       yield(any) ? bool = true : break
     end
     print bool
+  end
+
+  def my_none?
+    non_test = true
+    my_each do |none|
+      if !yield(none)
+        non_test = true
+      else non_test = false
+      end
+    end
+    print non_test
   end
 end
