@@ -98,6 +98,10 @@ module Enumerable
     inj_arr[1..-1].my_each { |i| result = yield(result, i) }
     print result
   end
-end
 
-print [5, 6, 7, 8, 9, 10].my_inject { |product, n| product + n }
+  def multiply_els(Array)
+    arr.my_inject(:*)
+  end
+
+end
+puts multiply_els([2, 4, 5])
