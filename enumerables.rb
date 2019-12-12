@@ -55,4 +55,15 @@ module Enumerable
     end
     print non_test
   end
+
+  def my_count?
+    count = 0
+    my_each do
+      count += 1
+    end
+    print count
+  end
 end
+
+array = [1, 2, 4, 2]
+array.my_count? { |x| print x % 2==0 }
