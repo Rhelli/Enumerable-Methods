@@ -1,6 +1,7 @@
                                   # 🧱 Advanced Building Blocks - Recreating Ruby Enumerables
 
-        <a href="enumerables-preview.png" target="_blank"> <img alt="Ruby's Enumerable Module" src="enumerables-preview.png"/></a>
+
+<a align="center href="enumerables-preview.png" target="_blank"> <img alt="Ruby's Enumerable Module" src="enumerables-preview.png"/></a>
 
 This project is part of a series of projects to be completed by students of [Microverse](https://www.microverse.org/ 'The Global School for Remote Software Developers!').
 
