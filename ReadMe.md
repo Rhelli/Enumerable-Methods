@@ -11,7 +11,7 @@
 
 This project is part of a series of projects to be completed by students of [Microverse](https://www.microverse.org/ 'The Global School for Remote Software Developers!').
 
-This project consists of recreating, from scratch, the Ruby [Enumerable Module](https://blog.appsignal.com/2018/05/29/ruby-magic-enumerable-and-enumerator.html) which is commonly used in day-to-day use. Due to the nature of the 'Enumerable Module' and it's oh-so frequent use - this prroves to be an important lesson to learn...
+This project consists of recreating, from scratch, the Ruby [Enumerable Module](https://blog.appsignal.com/2018/05/29/ruby-magic-enumerable-and-enumerator.html) which is commonly used in day-to-day use. Due to the nature of the 'Enumerable Module' and it's oh-so frequent use - this proves to be an important concept for newcomers to Ruby.
 
 ## 📏 The Project Brief
 
@@ -39,13 +39,13 @@ The assignment can be found in the Odin Project's HTML and CSS course that can b
 
 ## 🤯 The Project
 
-Our project can be found at https://github.com/Rhelli/Bubble-Sort
+Our project can be found at https://github.com/Rhelli/Enumerable-Methods
 
 ## 💌 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/Rhelli/Bubble-Sort/issues).
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/Rhelli/Enumerable-Methods/issues).
 
-1. Fork it (https://github.com/Rhelli/Bubble-Sort/fork)
+1. Fork it (https://github.com/Rhelli/Enumerable-Methods/fork)
 2. Create your working branch (git checkout -b [choose-a-name])
 3. Commit your changes (git commit -am 'what this commit will fix/add/improve')
 4. Push to the branch (git push origin [chosen-name])
@@ -59,6 +59,3 @@ Rory Hellier - [GitHub](https://github.com/Rhelli)
 
 Give a ⭐️ if you like this project!
 
-## ⚖️ Licensing
-
-This project is [MIT](https://github.com/Rhelli/Bubble-Sortdevelopment/LICENSE.txt) licensed.
