@@ -1,6 +1,9 @@
-<p align="center">
-# 🧱 Advanced Building Blocks - Recreating Ruby Enumerables
-</p>
+<center> 
+  
+  # 🧱 Advanced Building Blocks - Recreating Ruby Enumerables 
+
+</center>
+
 
 <p align = "center">
 <img alt="Ruby's Enumerable Module" src="enumerables-preview.png"/></a>
