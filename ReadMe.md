@@ -1,6 +1,6 @@
 <center> 
   
-# 🧱 Advanced Building Blocks - Recreating Ruby Enumerables 
+# 🧱 Advanced Building Blocks - Ruby Enumerables 
 
 </center>
 
