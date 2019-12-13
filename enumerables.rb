@@ -5,16 +5,24 @@ module Enumerable
     return to_enum unless block_given?
 
     x = 0
-    while x < length
-      yield(self[x])
-      x += 1
+    if is_a?(Array)
+      while x < length
+        yield(self[x])
+        x += 1
+      end
+    else
+      each_arr = to_a
+      while x < each_arr.length
+        yield(each_arr[x])
+        x += 1
+      end
     end
-    self
   end
 
   def my_each_with_index
     return to_enum unless block_given?
 
+    is_a?(Array) ? self : to_a
     y = 0
     while y < length
       yield(self[y], y)
@@ -26,6 +34,7 @@ module Enumerable
   def my_select
     return to_enum unless block_given?
 
+    is_a?(Array) ? self : to_a
     temp = []
     my_each do |j|
       yield(j) ? temp.push(j) : next
@@ -99,9 +108,13 @@ module Enumerable
     print result
   end
 
-  def multiply_els(Array)
-    arr.my_inject(:*)
-  end
 
 end
-puts multiply_els([2, 4, 5])
+
+def multiply_els(arr)
+  arr.my_inject(:*)
+end
+
+(1..5).my_each {|x| print x}
+
+[1, 2, 3, 4, 5].my_each { |x| print x*2 }
