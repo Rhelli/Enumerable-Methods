@@ -8,9 +8,10 @@
 <p align = "center">
 <img alt="Ruby's Enumerable Module" src="enumerables-preview.png"/></a>
 </p>
+
 This project is part of a series of projects to be completed by students of [Microverse](https://www.microverse.org/ 'The Global School for Remote Software Developers!').
 
-This project consists of recreating, from scratch, the Ruby ['Enumerable Module'](https://blog.appsignal.com/2018/05/29/ruby-magic-enumerable-and-enumerator.html) which is commonly used in day-to-day use. Due to the nature of the 'Enumerable Module' and it's oh-so frequent use - this prroves to be an important lesson to learn...
+This project consists of recreating, from scratch, the Ruby [Enumerable Module](https://blog.appsignal.com/2018/05/29/ruby-magic-enumerable-and-enumerator.html) which is commonly used in day-to-day use. Due to the nature of the 'Enumerable Module' and it's oh-so frequent use - this prroves to be an important lesson to learn...
 
 ## 📏 The Project Brief
 
