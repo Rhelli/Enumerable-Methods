@@ -52,3 +52,12 @@ print longest = %w{ cat sheep bear }.my_inject do |memo, word|
    memo.length > word.length ? memo : word
 end
 
+
+def my_inject(*injector)
+   inj_arr = injector + self
+   return inj_arr if inj_arr.empty? || length == 1
+
+   result = inj_arr[0]
+   inj_arr[1..-1].my_each { |i| result = yield(result, i) }
+   print result
+ end

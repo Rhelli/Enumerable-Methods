@@ -51,7 +51,7 @@ module Enumerable
 
       break
     end
-    print valid
+    valid
   end
 
   def my_any?
@@ -59,9 +59,9 @@ module Enumerable
 
     bool = false
     my_each do |any|
-      yield(any) ? bool = true : break
+      yield(any) ? bool = true : next
     end
-    print bool
+    bool
   end
 
   def my_none?
@@ -74,47 +74,120 @@ module Enumerable
       else non_test = false
       end
     end
-    print non_test
+    non_test
   end
 
-  def my_count
-    return to_enum unless block_given?
-
+  def my_count(val = nil)
     count = 0
-    my_each do
+    if block_given?
+      my_each { |i| count += 1 if yield(i) }
+    elsif !val.nil?
+      my_each { |j| count += 1 if self[j] == val}
+    else
       count += 1
     end
-    print count
+    count
   end
 
-  def my_map
-    return to_enum unless block_given?
-
+  def my_map(&proc)
     map_arr = []
-    my_each do |x|
-      map_arr.push(yield(x))
-    end
+    block_given? ? my_each { |x| map_arr.push(yield(x))} : my_each { |y| map_arr.push(proc.call(y)) }
     map_arr
   end
 
-  def my_inject(*injector)
-    return to_enum unless block_given?
+  def my_inject(accumulator = nil, sym = nil,  &block)
+    accumulator = accumulator.to_sym if accumulator.is_a?(String) && !sym && !block_given?
+    block, accumulator = accumulator.to_proc, nil if accumulator.is_a?(Symbol) && !sym
+    sym = sym.to_sym if sym.is_a?(Symbol)
 
-    inj_arr = injector + self
-    return inj_arr if inj_arr.empty? || length == 1
-
-    result = inj_arr[0]
-    inj_arr[1..-1].my_each { |i| result = yield(result, i) }
-    print result
+    my_each { |x| accumulator = accumulator.nil? ? x : block.yield(accumulator, x) }
+    accumulator
   end
-
-
 end
 
 def multiply_els(arr)
-  arr.my_inject(:*)
+  arr.my_inject { |x, y| x * y }
 end
 
-(1..5).my_each {|x| print x}
+=begin
+[1, 2, 3, 5].my_each { |x| p x }
+puts
+[1, 2, 3, 5].each { |x| p x } #compare
+puts
+=end
 
-[1, 2, 3, 4, 5].my_each { |x| print x*2 }
+=begin
+[1, 2, 3, 5].my_each_with_index { |x, y| puts "#{x} at #{y}" }
+puts
+[1, 2, 3, 5].each_with_index { |x, y| puts "#{x} at #{y}" }#compare
+puts
+=end
+
+=begin
+p [1, 2, 3, 4].my_select { |x| x % 2 == 0}
+puts
+p [1, 2, 3, 4].select { |x| x % 2 == 0 }#compare
+puts
+=end
+
+=begin
+p ['alpha', 'apple', 'allen key'].my_all?{ |x| x[0] == 'a' }
+puts
+p ['alpha', 'apple', 'allen key'].all?{ |x| x[0] == 'a' }
+puts
+=end
+
+=begin
+p ['lpha', 'apple', 'llen key'].my_any?{ |x| x[0] == 'a' }
+puts
+p ['lpha', 'pple', 'allen key'].any?{ |x| x[0] == 'a' }
+puts
+=end
+
+=begin
+p ['lpha', 'pple', 'llen key'].my_none?{ |x| x[0] == 'a' }
+puts
+p ['lpha', 'pple', 'llen key'].none?{ |x| x[0] == 'a' }
+puts
+=end
+=begin
+arr = [1, 2, 3, 4]
+p arr.my_count { |i| i%2==0}
+puts
+p arr.count { |i| i%2==0}
+puts
+=end
+
+=begin
+p [1,2,3,4,4,7,7,7,9].my_count { |i| i > 1 }
+puts
+p [1,2,3,4,4,7,7,7,9].count { |i| i > 1 }
+puts
+=end
+
+
+
+=begin
+p [1,2,3,4,4,7,7,7,9].my_map { |i| i*4 }
+puts
+p [1,2,3,4,4,7,7,7,9].map { |i| i*4 }
+puts 
+=end
+
+=begin
+p [1,2,3,4,4,7,7,7,9].my_inject(0){|running_total, item| running_total + item }
+puts
+p [1,2,3,4,4,7,7,7,9].inject(0){|running_total, item| running_total + item }
+puts 
+=end
+
+=begin
+p multiply_els([2,4,5])
+=end
+
+=begin
+my_proc = Proc.new { |i| i*4 }
+p [1,2,3,4,4,7,7,7,9].my_map { |i| i*4 }
+puts
+p [1,2,3,4,4,7,7,7,9].my_map(&my_proc)
+=end
