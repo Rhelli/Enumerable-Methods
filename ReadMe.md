@@ -39,7 +39,7 @@ The assignment can be found in the Odin Project's HTML and CSS course that can b
 
 ## 🤯 The Project
 
-Our project can be found at https://github.com/Rhelli/Enumerable-Methods
+The project can be found at https://github.com/Rhelli/Enumerable-Methods
 
 ## 💌 Contributing
 
