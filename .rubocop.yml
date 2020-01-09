@@ -5,7 +5,7 @@ AllCops:
     - "config/**/*"
     - "Guardfile"
     - "Rakefile"
-    - "spec/spec_helper.rb"
+    - "/Users/roryhellier/Desktop/Programming/Microverse/Ruby/Enumerable-Methods/spec/spec_helper.rb"
   DisplayCopNames: true
 
 Layout/LineLength:
