@@ -79,13 +79,15 @@ module Enumerable
   end
 
   def my_none?
-    return to_enum unless block_given?
-
-    non_test = true
-    my_each do |none|
-      if !yield(none)
-        non_test
-      else non_test = false
+    if !block_given?
+      my_each { |x| return true if x == true}
+    else
+      non_test = true
+      my_each do |none|
+        if !yield(none)
+          non_test
+        else non_test = false
+        end
       end
     end
     non_test
@@ -98,7 +100,7 @@ module Enumerable
     elsif !val.nil?
       my_each { |j| count += 1 if self[j] == val }
     else
-      count += 1
+      count = length
     end
     count
   end
@@ -123,3 +125,8 @@ end
 def multiply_els(arr)
   arr.my_inject { |x, y| x * y }
 end
+
+arr = [2, 3, 4, 5]
+
+p arr.inject(0) { |x, sum| x + sum }
+
