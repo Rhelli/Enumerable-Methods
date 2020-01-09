@@ -17,6 +17,7 @@ module Enumerable
         x += 1
       end
     end
+    self
   end
 
   def my_each_with_index
@@ -43,37 +44,38 @@ module Enumerable
   end
 
   def my_all?
-    return to_enum unless block_given?
-
-    is_a?(Array) ? self : to_a
-    valid = true
-    my_each do |k|
-      yield(k) ? next : valid = false
-
-      break
+    if block_given?
+      is_a?(Array) ? self : to_a
+      valid = true
+      my_each do |k|
+        yield(k) ? next : valid = false
+      end
+      valid
+    else
+      my_each { |x| falise if x.nil? || x == false }
     end
-    valid
   end
 
   def my_any?
-    return to_enum unless block_given?
+    return false if empty?
 
-    bool = false
-    my_each do |any|
-      yield(any) ? bool = true : next
+    if block_given?
+      bool = false
+      my_each do |any|
+        yield(any) ? bool = true : next
+      end
+      bool
+    else
+      my_each { |x| return true unless x.nil? }
     end
-    bool
   end
 
   def my_none?
-    return to_enum unless block_given?
-
-    non_test = true
-    my_each do |none|
-      if !yield(none)
-        non_test
-      else non_test = false
-      end
+    if !block_given?
+      my_each { |x| return true if x == true }
+    else
+      non_test = true
+      my_each { |none| !yield(none) ? non_test : non_test = false }
     end
     non_test
   end
@@ -85,7 +87,7 @@ module Enumerable
     elsif !val.nil?
       my_each { |j| count += 1 if self[j] == val }
     else
-      count += 1
+      count = length
     end
     count
   end
