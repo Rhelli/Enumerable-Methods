@@ -43,7 +43,7 @@ module Enumerable
     temp
   end
 
-  def my_all?(args = nil)
+  def my_all?
     if block_given?
       is_a?(Array) ? self : to_a
       valid = true
@@ -52,11 +52,10 @@ module Enumerable
 
         break
       end
-      valid
-    end
-    if !block_given?
+      return valid
+    elsif !block_given?
       my_each do |x|
-        if x == nil || x == false
+        if x.nil? || x == false
           return false
         else
           return true
@@ -66,13 +65,17 @@ module Enumerable
   end
 
   def my_any?
-    return to_enum unless block_given?
+    return false if empty?
 
-    bool = false
-    my_each do |any|
-      yield(any) ? bool = true : next
+    if block_given?
+      bool = false
+      my_each do |any|
+        yield(any) ? bool = true : next
+      end
+      bool
+    else
+      my_each { |x| return true if !x.nil? }
     end
-    bool
   end
 
   def my_none?
@@ -120,5 +123,3 @@ end
 def multiply_els(arr)
   arr.my_inject { |x, y| x * y }
 end
-
-[].my_all?
