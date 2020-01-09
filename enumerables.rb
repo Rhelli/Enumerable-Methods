@@ -17,6 +17,7 @@ module Enumerable
         x += 1
       end
     end
+    self
   end
 
   def my_each_with_index
@@ -42,17 +43,26 @@ module Enumerable
     temp
   end
 
-  def my_all?
-    return to_enum unless block_given?
+  def my_all?(args = nil)
+    if block_given?
+      is_a?(Array) ? self : to_a
+      valid = true
+      my_each do |k|
+        yield(k) ? next : valid = false
 
-    is_a?(Array) ? self : to_a
-    valid = true
-    my_each do |k|
-      yield(k) ? next : valid = false
-
-      break
+        break
+      end
+      valid
     end
-    valid
+    if !block_given?
+      my_each do |x|
+        if x == nil || x == false
+          return false
+        else
+          return true
+        end
+      end
+    end
   end
 
   def my_any?
@@ -110,3 +120,5 @@ end
 def multiply_els(arr)
   arr.my_inject { |x, y| x * y }
 end
+
+[].my_all?
