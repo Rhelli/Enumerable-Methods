@@ -49,18 +49,10 @@ module Enumerable
       valid = true
       my_each do |k|
         yield(k) ? next : valid = false
-
-        break
       end
-      return valid
-    elsif !block_given?
-      my_each do |x|
-        if x.nil? || x == false
-          return false
-        else
-          return true
-        end
-      end
+      valid
+    else
+      my_each { |x| falise if x.nil? || x == false }
     end
   end
 
@@ -74,21 +66,16 @@ module Enumerable
       end
       bool
     else
-      my_each { |x| return true if !x.nil? }
+      my_each { |x| return true unless x.nil? }
     end
   end
 
   def my_none?
     if !block_given?
-      my_each { |x| return true if x == true}
+      my_each { |x| return true if x == true }
     else
       non_test = true
-      my_each do |none|
-        if !yield(none)
-          non_test
-        else non_test = false
-        end
-      end
+      my_each { |none| !yield(none) ? non_test : non_test = false }
     end
     non_test
   end
@@ -125,8 +112,3 @@ end
 def multiply_els(arr)
   arr.my_inject { |x, y| x * y }
 end
-
-arr = [2, 3, 4, 5]
-
-p arr.inject(0) { |x, sum| x + sum }
-
